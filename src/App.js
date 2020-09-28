@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Link, Route, Switch } from "react-router-dom";
+import Category from "./components/Category";
+import Products from "./components/productsDisplay/Products";
+import Login from "./components/Admin/Login";
+import PrivateRoute from "./components/Admin/PrivateRoute";
+import "./App.css";
+
+const Home = () => {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/"> Home </Link>
+          </li>
+          <li>
+            <Link to="/Category"> Category </Link>
+          </li>
+          <li>
+            <Link to="/Products"> Products </Link>
+          </li>
+          <li>
+            <Link to="/Login"> Admin Area </Link>
+          </li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route exact={true} path="/" component={Home} />
+        <Route path="/Category" component={Category} />
+        <Route path="/Login" component={Login} />
+        <PrivateRoute auth={isAuth} path="/Products" component={Products} />
+      </Switch>
     </div>
   );
 }
-
 export default App;
