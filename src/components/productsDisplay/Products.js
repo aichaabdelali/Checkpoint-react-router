@@ -1,7 +1,34 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
-import productsData from "./ProductsData";
 import Product from "./Product";
+
+const productsData = [
+  {
+    id: 1,
+    item: "NIKE Liteforce Blue Sneakers",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie.",
+    inStock: "Available",
+  },
+  {
+    id: 2,
+    item: "U.S. POLO ASSN. Slippers",
+    description: "Mauris finibus, massa eu tempor volutpat, magna dolor euismod dolor.",
+    inStock: "Available",
+  },
+  {
+    id: 3,
+    item: "ADIDAS Adispree Running Shoes",
+    description:
+      "Maecenas condimentum porttitor auctor. Maecenas viverra fringilla felis, eu pretium.",
+    inStock: "Available",
+  },
+  {
+    id: 4,
+    item: "Lee Cooper Mid Sneakers",
+    description: "Ut hendrerit venenatis lacus, vel lacinia ipsum fermentum vel. Cras.",
+    inStock: "Out of Stock",
+  },
+];
 
 const Products = ({ match }) => {
   let ProductsLink = productsData.map((product) => {
@@ -11,12 +38,13 @@ const Products = ({ match }) => {
       </li>
     );
   });
-
   return (
     <div>
       <div>
         <h3>Products</h3>
-        <ul>{ProductsLink}</ul>
+        <ul>
+          <li>{ProductsLink}</li>
+        </ul>
       </div>
       <div>
         <Route
