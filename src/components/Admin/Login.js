@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-const Login = ({ isAuth, location }) => {
-  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-  let isAuth = setRedirectToReferrer;
-
-  const { from } = location.state || { from: { pathname: "/" } };
-
-  if (redirectToReferrer) {
+const Login = (props) => {
+  const [authen, setAuthen] = useState(false);
+  const fakeAuth = () => {
+    setAuthen(true);
+  };
+  const { from } = props.location.state || { from: { pathname: "/" } };
+  if (authen) {
     return <Redirect to={from} />;
   }
-
   return (
     <div>
-      <p>You must log in to view the page at {from.pathname}</p>
-      <button onClick={isAuth}>Log in</button>
+      <h5>You need to log in</h5>
+      <button onClick={fakeAuth}>log in</button>
     </div>
   );
 };

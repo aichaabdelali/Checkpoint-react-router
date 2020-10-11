@@ -3,8 +3,8 @@ import { Link, Route, Switch } from "react-router-dom";
 import Category from "./components/Category";
 import Products from "./components/productsDisplay/Products";
 import Login from "./components/Admin/Login";
-import PrivateRoute from "./components/Admin/PrivateRoute";
 import "./App.css";
+import PrivateRoute from "./components/Admin/PrivateRoute";
 
 const Home = () => {
   return (
@@ -37,7 +37,7 @@ function App() {
         <Route exact={true} path="/" component={Home} />
         <Route path="/Category" component={Category} />
         <Route path="/Login" component={Login} />
-        <PrivateRoute auth={isAuth} path="/Products" component={Products} />
+        <PrivateRoute path="/Products" component={Products} />
       </Switch>
     </div>
   );
