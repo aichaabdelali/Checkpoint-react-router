@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import Category from "./components/Category";
 import Products from "./components/productsDisplay/Products";
 import Login from "./components/Admin/Login";
-import "./App.css";
 import PrivateRoute from "./components/Admin/PrivateRoute";
+import "./App.css";
 
 const Home = () => {
   return (
@@ -15,6 +15,11 @@ const Home = () => {
 };
 
 function App() {
+  const [isLogged, setIsLogged] = useState(false);
+  const handleLogin = () => {
+    setIsLogged(true);
+  };
+
   return (
     <div className="App">
       <nav>
@@ -35,9 +40,13 @@ function App() {
       </nav>
       <Switch>
         <Route exact={true} path="/" component={Home} />
+        <Route path="/Products" component={Products} />
         <Route path="/Category" component={Category} />
-        <Route path="/Login" component={Login} />
-        <PrivateRoute path="/Products" component={Products} />
+        <PrivateRoute path="/admin" isLogged={isLogged} component={Login} />
+        <Route
+          path="/login"
+          render={(props) => <Login isLogged={isLogged} handleLogin={handleLogin} {...props} />}
+        />
       </Switch>
     </div>
   );
